@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>B.Ed e-Portfolio | Navid Inayat</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Segoe+UI:wght@400;600&display=swap');
+
+:root{
+  --primary: #1e3c72;
+  --accent: #ff7e5f;
+  --bg: #ffffff;
+  --text: #1b1b1b;
+  --card: #ffffff;
+  --section-bg: #f9f9f9;
+  --btn-blue: #1e88e5;
+  --btn-purple: #c045f5;
+}
+
+body.dark{
+  --bg: #121212;
+  --text: #f1f1f1;
+  --card: #1e1e1e;
+  --section-bg: #1a1a1a;
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins', sans-serif;
+  scroll-behavior:smooth;
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
+}
+
+/* Scroll Progress Bar */
+#progressBar{
+  position:fixed;
+  top:0;
+  left:0;
+  height:5px;
+  background:var(--accent);
+  width:0%;
+  z-index:2000;
+}
+
+/* HEADER */
+header{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+  url('images/cover.jpeg') center/cover no-repeat;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+}
+
+header h1{
+  font-size:50px;
+  margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2rem;
+}
+
+.typing{
+  color:#ffb199;
+  font-weight:600;
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  background:rgba(30,60,114,0.95);
+  padding:15px;
+  text-align:center;
+  z-index:1000;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+nav a{
+  color:white;
+  margin:0 10px;
+  text-decoration:none;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+nav a:hover {
+    color: var(--accent);
+}
+
+/* SECTIONS */
+section{
+  padding:60px 20px;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+h2{
+  text-align:center;
+  margin-bottom:40px;
+  color:var(--primary);
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* CARDS & CONTAINERS */
+.card{
+  background:var(--card);
+  padding:35px;
+  border-radius:15px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.08);
+  max-width:1100px;
+  margin:auto;
+  color: var(--text);
+}
+
+/* TEXT CONTENT STYLES */
+.indent{
+  text-indent: 40px;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  text-align: justify;
+}
+
+.guide-name{
+  font-weight: bold;
+  color: var(--primary);
+  background: rgba(30, 60, 114, 0.1);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+.sub-heading{
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  color: var(--accent);
+}
+
+/* ACADEMIC IMAGES GRID */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  background: #f5f5f5;
+  padding: 5px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.image-gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* PRACTICAL BUTTONS (Teaching & Digital) */
+.practical-buttons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.practical-buttons button {
+  padding: 12px;
+  border-radius: 50px;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 0.9rem;
+}
+
+.sem1 button { background: var(--btn-blue); }
+.sem1 button:hover { background: #1565c0; transform: scale(1.05); }
+
+.digital-btn button { background: var(--btn-purple); }
+.digital-btn button:hover { background: #9c27b0; transform: scale(1.05); }
+
+/* GALLERY COLLAGE */
+.collage {
+  column-count: 4;
+  column-gap: 15px;
+}
+
+.collage img {
+  width: 100%;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  break-inside: avoid;
+  transition: 0.3s ease;
+  background: rgba(0,0,0,0.05);
+  padding: 5px;
+}
+
+.collage img:hover {
+  transform: scale(1.05);
+}
+
+/* MODALS (Image & PDF) */
+.modal, .pdf-modal {
+  display: none;
+  position: fixed;
+  z-index: 3000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 10px;
+}
+
+.pdf-content {
+  position: relative;
+  width: 90%;
+  height: 90%;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.pdf-content iframe {
+  width: 100%;
+  height: 100%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  z-index: 3001;
+}
+
+.pdf-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #e53935;
+  color: white;
+  padding: 5px 12px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-weight: bold;
+  z-index: 100;
+}
+
+/* TOGGLE DARK MODE */
+.toggle{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:var(--accent);
+  color:white;
+  padding:10px 15px;
+  border-radius:30px;
+  cursor:pointer;
+  z-index: 2500;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* FOOTER */
+footer{
+  background:var(--primary);
+  color:white;
+  text-align:center;
+  padding:30px;
+  margin-top: 40px;
+}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .collage { column-count: 3; }
+}
+@media(max-width:768px){
+  header h1{ font-size: 35px; }
+  .collage { column-count: 2; }
+  nav { white-space: nowrap; overflow-x: scroll; }
+}
+@media(max-width:480px){
+  .collage { column-count: 1; }
+  .practical-buttons { grid-template-columns: 1fr 1fr; }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="progressBar"></div>
+
+<header>
+  <h1>B.Ed e-Portfolio</h1>
+  <p>I am a <span class="typing"></span></p>
+  <p style="margin-top:10px; font-size: 1rem; opacity: 0.9;">Welcome to My Learning Journey</p>
+</header>
+
+<nav>
+  <a href="#home">Intro</a>
+  <a href="#gratitude">Gratitude</a>
+  <a href="#about">About</a>
+  <a href="#academic">Academic</a>
+  <a href="#teaching">Teaching</a>
+  <a href="#digital">Digital</a>
+  <a href="#gallery">Gallery</a>
+  <a href="#conclusion">Reflection</a>
+  <a href="#contact">Contact</a>
+</nav>
+
+<section id="home">
+  <h2>Introduction</h2>
+  <div class="card">
+    <p class="indent">
+       In today's digital age, subject knowledge alone is not sufficient for teachers; effectively integrating technology in teaching is equally important. 
+       This e-portfolio serves as a comprehensive record of my B.Ed journey, showcasing my growth as an aspiring educator. 
+       Here, you will find a detailed description of the skills I have acquired, the teaching strategies I have applied, and the experiences that shaped my professional development.
+       <br><br>
+       This portfolio also reflects my learning process, including lesson planning, microteaching, classroom management, and reflective practice. 
+       Additionally, it highlights the digital tools and innovative methods I have employed to enhance learning outcomes.
+       <br><br>
+       I hope this collection of my academic progress, practical experiences, and reflections provides a clear insight into my journey as a future teacher.
+    </p>
+  </div>
+</section>
+
+<section id="gratitude">
+  <h2>Gratitude</h2>
+  <div class="card">
+    <p class="indent">
+      While preparing this e-portfolio, I received valuable guidance and cooperation from many people.  
+      I sincerely express my heartfelt gratitude to the Principal, all subject teachers, and my guide 
+      <span class="guide-name">Prof. Gavhane S. N.</span> of my college for their constant encouragement, expert guidance, and continuous support throughout this work.
+      <br><br>
+      I am also thankful to the college administration for providing necessary facilities and a positive learning environment.  
+      Special thanks to my family and friends whose motivation, cooperation, and moral support proved invaluable during the completion of this e-portfolio.
+    </p>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <div class="card">
+    <p><strong>Name:</strong> Bagwan Navid Inayat</p>
+    <p><strong>Course:</strong> Two Year B.Ed</p>
+    <p><strong>College:</strong> Sant Dnyaneshwar College Bhanashiware</p>
+    <p><strong>University Name:</strong> Savitribai Phule Pune University, Pune</p>
+    <p><strong>Selected Subjects:</strong> Science & Mathematics</p>
+    <p><strong>Guiding Teacher:</strong> Prof. Gawhane S. N.</p>
+    <hr style="margin: 15px 0; border: 0; border-top: 1px solid #ddd;">
+    <p><strong>Teaching Philosophy:</strong> Learner-centered and reflective teaching focused on innovative and technology-driven practices.</p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="academic">
+  <h2>Educational Records</h2>
+  <div class="card">
+    <div class="image-gallery">
+      <img src="images/acd.jpg" onclick="openImgModal(this)">
+      <img src="images/acd2.jpg" onclick="openImgModal(this)">
+      <img src="images/acd3.jpg" onclick="openImgModal(this)">
+      <img src="images/acd4.jpg" onclick="openImgModal(this)">
+      <img src="images/acd5.jpg" onclick="openImgModal(this)">
+      <img src="images/acd6.jpg" onclick="openImgModal(this)">
+      <img src="images/acd7.jpg" onclick="openImgModal(this)">
+      <img src="images/acd8.jpg" onclick="openImgModal(this)">
+      <img src="images/acd9.jpg" onclick="openImgModal(this)">
+      <img src="images/acd10.jpg" onclick="openImgModal(this)">
+    </div>
+  </div>
+</section>
+
+<section id="teaching">
+  <h2>Teaching Practice</h2>
+  <div class="card">
+    <p><strong>Semester 1 - Practical PDFs:</strong></p>
+    <div class="practical-buttons sem1">
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">101</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">102</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">103-A</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">103-B</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">104-A</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">104-B</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">105</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">106-A</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">106-B</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">107-A</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">107-B</button>
+      <button onclick="openPDF('1vjB_iL1SBBe09mEZ5-ejpp3jbB74ygsZ')">108-A</button>
+    </div>
+  </div>
+</section>
+
+<section id="digital">
+  <h2>Digital Skills</h2>
+  <div class="card">
+    <p><strong>Semester 1 - Digital PPT:</strong></p>
+    <div class="practical-buttons digital-btn">
+      <button onclick="openPDF('1lDg8jU5_oLe7xqMwMGeh8z3xhZRx21ak')">PPT SCI 105-1</button>
+      <button onclick="openPDF('1BCqCdr0j4DvpxvoR1r3yO9zi6_erVUGD')">PPT SCI 105-2</button>
+      <button onclick="openPDF('11M_Hb0B7yxyiddmwqIu6Y3Dzjdxq5X-G')">PPT MATH 105-1</button>
+      <button onclick="openPDF('1ta4R8a1Jps08-uXCkSaFP6de606D3FGV')">PPT MATH 105-2</button>
+    </div>
+  </div>
+</section>
+
+<section id="gallery">
+  <h2>Gallery</h2>
+  <div class="card">
+    <div class="collage" id="collageContainer">
+      </div>
+  </div>
+</section>
+
+<section id="conclusion">
+  <h2>Reflection & Conclusion</h2>
+  <div class="card">
+    <p class="indent">
+      This e-portfolio is a reflection of my complete B.Ed academic journey. Throughout this course, I not only gained subject knowledge but also developed essential teaching skills, professional values, and a student-centered approach. The reflective process helped me evaluate my strengths and weaknesses and continuously improve my teaching practices.
+    </p>
+
+    <div class="sub-heading">Best Artifacts and Learning Outcomes</div>
+    <p class="indent">
+      Some of the significant artifacts included in this portfolio are lesson plans, micro-teaching sessions, practice teaching reports, project work, and the effective use of ICT tools. Through these experiences, I developed the ability to design structured lesson plans, apply appropriate teaching methods, manage classrooms effectively, and integrate technology into teaching.
+    </p>
+
+    <div class="sub-heading">Development of Teaching Skills</div>
+    <p class="indent">
+      During the B.Ed program, I enhanced my skills of explanation, questioning, blackboard writing, classroom interaction, and time management. Regular practice and feedback helped me improve my confidence, communication skills, and overall teaching effectiveness.
+    </p>
+
+    <div class="sub-heading">Reflective Notes on Practical Work</div>
+    <p class="indent">
+      While preparing lesson plans, I initially faced challenges in time management and student engagement. However, through continuous practice and guidance, I incorporated interactive activities and improved lesson delivery. During micro-teaching sessions, I gradually overcame nervousness and improved voice clarity, presentation skills, and body language.
+    </p>
+
+    <div class="sub-heading">Overall Conclusion</div>
+    <p class="indent">
+      This e-portfolio clearly reflects my professional and personal development throughout the B.Ed course. It has shaped me into a responsible, reflective, and continuously improving teacher. The knowledge, skills, and experiences gained during this journey will guide me in becoming a skilled, competent, and inspiring teacher.
+    </p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <div class="card" style="text-align: center;">
+    <p><strong>Email:</strong> nbagwan1321@gmail.com</p>
+    <p><strong>Phone:</strong> 8668569949</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 B.Ed e-Portfolio | Ultimate Premium Design</p>
+  <p>Designed for BED108</p>
+</footer>
+
+<div id="imgModal" class="modal" onclick="closeImgModal()">
+  <span class="close-btn">&times;</span>
+  <img id="modalImg">
+</div>
+
+<div id="pdfModal" class="pdf-modal">
+  <div class="pdf-content">
+    <span class="pdf-close" onclick="closePDF()">✖</span>
+    <iframe id="pdfFrame" src="" frameborder="0"></iframe>
+  </div>
+</div>
+
+<div class="toggle" onclick="toggleDark()">Dark Mode</div>
+
+<script>
+/* 1. Typing Effect */
+const texts=["Future Educator","Reflective Teacher","Digital Instructor"];
+let count=0,index=0,currentText='',letter='';
+(function type(){
+  if(count===texts.length) count=0;
+  currentText=texts[count];
+  letter=currentText.slice(0,++index);
+  document.querySelector('.typing').textContent=letter;
+  if(letter.length===currentText.length){
+    count++;
+    index=0;
+  }
+  setTimeout(type,150);
+})();
+
+/* 2. Scroll Progress */
+window.onscroll=function(){
+  let winScroll=document.body.scrollTop||document.documentElement.scrollTop;
+  let height=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+  let scrolled=(winScroll/height)*100;
+  document.getElementById("progressBar").style.width=scrolled+"%";
+};
+
+/* 3. Dark Mode */
+function toggleDark(){
+  document.body.classList.toggle("dark");
+  const btn = document.querySelector('.toggle');
+  if(document.body.classList.contains('dark')){
+    btn.textContent = "Light Mode";
+  } else {
+    btn.textContent = "Dark Mode";
+  }
+}
+
+/* 4. Image Gallery Auto Loader (1 to 48) */
+const totalImages = 48;  
+const container = document.getElementById("collageContainer");
+for (let i = 1; i <= totalImages; i++) {
+  let img = document.createElement("img");
+  img.src = "images/gl" + i + ".jpeg";
+  img.onclick = function(){ openImgModal(this); }; // Make generated images clickable
+  img.onerror = function(){ this.style.display='none'; }; // Hide if image missing
+  container.appendChild(img);
+}
+
+/* 5. Image Modal Logic */
+function openImgModal(element) {
+  document.getElementById("imgModal").style.display = "flex";
+  document.getElementById("modalImg").src = element.src;
+}
+function closeImgModal() {
+  document.getElementById("imgModal").style.display = "none";
+}
+
+/* 6. PDF Modal Logic */
+function openPDF(fileId) {
+  document.getElementById("pdfFrame").src =
+    "https://drive.google.com/file/d/" + fileId + "/preview";
+  document.getElementById("pdfModal").style.display = "flex"; // Changed from block to flex for centering
+}
+function closePDF() {
+  document.getElementById("pdfModal").style.display = "none";
+  document.getElementById("pdfFrame").src = "";
+}
+
+/* 7. Disable Right Click on Images */
+document.addEventListener("contextmenu", function(e){
+  if(e.target.tagName === "IMG"){
+    e.preventDefault();
+  }
+});
+</script>
+
+</body>
+</html>
